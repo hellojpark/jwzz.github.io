@@ -1,0 +1,14 @@
+- title: "자기주도 학습을 위한 AI-Agent"
+  video_file: "/videos/kt-midm_demo.mp4"
+  duration: "2025.07 ~ 2024.09"
+  description: "Real-time gesture recognition demo using MR device."
+
+# - title: "Blood Flow Visualization"
+#   video_file: "/videos/blood_flow.mp4"
+#   duration: "2023.09 ~ 2023.12"
+#   description: "Blood flow visualization demo based on image processing."
+
+# - title: "3D Gaussian Splatting"
+#   video_file: "/videos/gaussian_splatting.mp4"
+#   duration: "2023.05 ~ 2023.08"
+#   description: "3D Gaussian Splatting demo for physics-based simulation."
