@@ -2,5 +2,9 @@
 지금 '_layout/resume.html'이 메인인거 같은데 맞니?
 [2025-10-15]
 내가 원하는 건 지금 페이지(resume.html) 유지하면서, project페이지만 따로 만들고 싶은거야. 결국 CV와 Project페이지를 버튼으로 눌러서 들어갈 수 있게 하고, CV 페이지는 resume.html이 나타내는 거로 하고 싶고, Project버튼을 누르면 project.html이 나타내는 페이지가 뜨게 만들고 싶어. 물론 Project 페이지에 들어가서 CV 버튼 눌렀을 때 CV 페이지로 넘어가져야 하고 반대도 마찬가지.
+[2025-10-15]
+그렇게 해서 내가 원하는 대로 된다고?
+[2025-10-15]
+index.html이 "layout: resume"이면 여전히 layout폴더의 resume을 참고해서 페이지가 만들어지는 거 아니야? 너가 만든 cv.html이 무슨 의미야?
 
 
