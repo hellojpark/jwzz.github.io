@@ -108,6 +108,28 @@
 
     .executive-summary { margin-top: 16px; }
 
+    /* Home icon links under name/email */
+    .home-info .icon-links {
+      text-align: left;
+      border-top: none;
+      padding-top: 0;
+      margin: 0;
+    }
+    .home-follow-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0 4px;
+    }
+    .home-info .home-follow {
+      margin: 0;
+      font-size: 1.1rem; /* match email size */
+      line-height: 1.4;
+      font-weight: 600; /* bold label as requested */
+      text-align: left;
+    }
+    .home-label { font-weight: 600; }
+
   </style>
 
   <body class="theme-{% if site.resume_theme %}{{ site.resume_theme }}{% endif %}">
@@ -123,7 +145,11 @@
           {% endif %}
           <div class="home-info">
             <h1 class="header-name" itemprop="name">{{ site.resume_name }}</h1>
-            <p class="home-email">E-mail : <a href="mailto:{{ site.resume_contact_email }}">{{ site.resume_contact_email }}</a></p>
+            <p class="home-email"><span class="home-label">E-mail :</span> <a href="mailto:{{ site.resume_contact_email }}">{{ site.resume_contact_email }}</a></p>
+            <div class="home-follow-row">
+              <span class="home-follow">Follow Me : </span>
+              {% include icon-links.html %}
+            </div>
           </div>
         </div>
         <div class="executive-summary" itemprop="description">
