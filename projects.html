@@ -1,0 +1,27 @@
+---
+layout: projects
+title: Projects
+---
+
+{% include head.html %}
+{% include header.html %}
+
+<div class="wrapper">
+  <!-- <div class="breadcrumb"><a href="resume.html">Home</a> / Projects</div> -->
+  <h1>Projects</h1>
+
+  {% for project in site.data.projects %}
+  <div class="project-item">
+    <video class="project-video" controls>
+      <source src="{{ project.video_url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="project-description">
+      <h3>{{ project.name }}</h3>
+      <p><strong>Duration:</strong> {{ project.duration }}</p>
+      <p>{{ project.description }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
