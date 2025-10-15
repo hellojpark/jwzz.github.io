@@ -1,0 +1,41 @@
+---
+title: Projects
+---
+{% include head.html %}
+{% include header.html %}
+
+<div class="wrapper">
+  <h1>Projects</h1>
+
+  {% for project in site.data.projects %}
+  <div class="project-item">
+    {% if project.video_url %}
+    <video class="project-video" controls>
+      <source src="{{ project.video_url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    {% endif %}
+
+    <div class="project-description">
+      <h3>{{ project.name | default: project.project }}</h3>
+      {% if project.duration %}
+      <p><strong>Duration:</strong> {{ project.duration }}</p>
+      {% endif %}
+      {% if project.description %}
+      <p>{{ project.description }}</p>
+      {% endif %}
+      {% if project.url %}
+      <p><a href="{{ project.url }}" target="_blank" rel="noopener">Visit</a></p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+.project-item { margin-bottom: 24px; }
+.project-video { display: block; margin: 10px 0; max-width: 100%; border: 1px solid #ccc; border-radius: 5px; }
+.project-description h3 { margin: 8px 0; }
+</style>
+
+
