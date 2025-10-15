@@ -1,36 +1,12 @@
 ---
-layout: cv
-title: CV
+layout: default
+title: CV & Projects
 ---
 
-{% if site.resume_section_education %}
-<section class="content-section">
-  <header class="section-header"><h2>Education</h2></header>
-  {% for education in site.data.education %}
-  <div class="resume-item">
-    <h3>{{ education.uni }}</h3>
-    <h4 class="resume-item-details">
-      <span class="degree">{{ education.degree }}</span>
-      <span class="year">{{ education.year }}</span>
-    </h4>
-    <p>{{ education.summary }}</p>
-  </div>
-  {% endfor %}
-</section>
-{% endif %}
+{% include header.html %}
 
-{% if site.resume_section_experience %}
-<section class="content-section">
-  <header class="section-header"><h2>Experience</h2></header>
-  {% for job in site.data.experience %}
-  <div class="resume-item">
-    <h3>{{ job.company }}</h3>
-    <h4 class="resume-item-details">
-      <span class="position">{{ job.position }}</span>
-      <span class="duration">{{ job.duration }}</span>
-    </h4>
-    <p>{{ job.summary }}</p>
-  </div>
-  {% endfor %}
-</section>
-{% endif %}
+<!-- CV 내용 불러오기 -->
+{% include cv.html %}
+
+<!-- Projects 내용 불러오기 -->
+{% include projects.html %}
