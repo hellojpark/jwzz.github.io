@@ -1,7 +1,8 @@
 # Site settings
 title: "Jekyll Resume Template"
 description: "A resume template for Jekyll and GitHub Pages sites."
-baseurl: "/jwzz.github.io"   # <- 여기에 추가
+baseurl: ""
+url: "https://jwzz.github.io"
 
 # Build settings
 markdown: kramdown
