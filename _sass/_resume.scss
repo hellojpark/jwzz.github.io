@@ -74,6 +74,33 @@
   }
 }
 
+// Home-specific overrides
+.page-header {
+  .home-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .home-hero .avatar {
+    margin: 0; // ensure left alignment instead of centered
+    width: 160px;
+    height: auto;
+    border-radius: 8px;
+  }
+  .home-info .header-name {
+    // override default big, centered name for home hero
+    font-size: 1.8rem;
+    line-height: 1.2;
+    text-align: left;
+    margin: 0 0 6px;
+  }
+  .home-email {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
 .icon-links {
   margin: 0;
   padding: 0;
