@@ -11,3 +11,10 @@
   video_url: "https://www.youtube.com/embed/ANOTHER_VIDEO_ID"
   overview_pdf: "https://drive.google.com/file/d/1YnsK7D4pc2fGdtYX33k5suIySyoORlaK/view?usp=drive_link"  # PDF 링크 없으면 비워두기
   github_url: "https://github.com/hellojpark/Realtime_prediction-/tree/feature/estate_recommend"
+
+- name: "Anomaly Detection-based Semiconductor Defect Detection "
+  duration: "2024.03 ~ 2024.06"
+  description: "Another demo project description here."
+  video_url: ""
+  overview_pdf: "https://drive.google.com/file/d/1k2BTVStK1-3cgFptBsmuqRE3aI7w6Gnm/view?usp=drive_link"  # PDF 링크 없으면 비워두기
+  github_url: ""

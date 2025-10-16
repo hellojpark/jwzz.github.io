@@ -6,7 +6,7 @@ title: Projects
 
 
 <div class="wrapper">
-    <h1>Projects</h1>
+    <h1 class="project-main-title">Projects</h1>
   
     {% for project in site.data.projects %}
     <div class="project-item">
@@ -51,6 +51,13 @@ title: Projects
   </div>
 
 <style>
+.project-main-title { 
+  color: #0066cc; 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  margin: 40px 0 50px 0; 
+}
+
 .project-item { 
   margin-bottom: 40px; 
   padding-bottom: 40px; 

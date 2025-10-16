@@ -64,6 +64,64 @@
     .patent-item > strong { font-size: 1rem; font-weight: 700; }
     .patent-item strong { font-weight: 700; }
     .patent-item a { font-size: 0.75rem; margin-left: 10px; text-decoration: none; font-weight: 300; }
+
+    /* CV Main Title */
+    .cv-title-container { 
+      display: flex; 
+      align-items: baseline; 
+      gap: 20px; 
+      margin: 40px 0 50px 0; 
+    }
+    
+    .cv-main-title { 
+      color: #0066cc; 
+      font-size: 2.5rem; 
+      font-weight: 700; 
+      margin: 0; 
+    }
+    
+    .cv-download-link { 
+      color: #0066cc; 
+      text-decoration: none; 
+      font-size: 0.85rem; 
+      font-weight: 400; 
+      white-space: nowrap; 
+    }
+    
+    .cv-download-link:hover { 
+      text-decoration: underline; 
+    }
+    
+    /* Projects section for print/PDF only */
+    .print-only-section { 
+      display: none; 
+    }
+    
+    .project-print-title { 
+      font-size: 1.2rem; 
+      font-weight: 700; 
+      margin: 0 0 8px 0; 
+    }
+    
+    .project-print-item { 
+      margin-bottom: 24px; 
+      page-break-inside: avoid; 
+    }
+    
+    @media print {
+      .cv-download-link { 
+        display: none; 
+      }
+      
+      .print-only-section { 
+        display: block; 
+      }
+      
+      /* Hide navigation header in print */
+      .page-header, .main-nav { 
+        display: none !important; 
+      }
+    }
   </style>
 
   <body class="theme-{% if site.resume_theme %}{{ site.resume_theme }}{% endif %}">
@@ -73,6 +131,11 @@
       <meta itemprop="address" content="{{ site.resume_contact_address }}"/>
 
       </header>
+
+      <div class="cv-title-container">
+        <h1 class="cv-main-title">Curriculum Vitae</h1>
+        <a href="javascript:window.print();" class="cv-download-link">[CV download]</a>
+      </div>
 
       {% if site.resume_section_education %}
       <section class="content-section">
@@ -183,6 +246,34 @@
         </div>
       </section>
       {% endif %}
+
+      <!-- Projects section for PDF export only -->
+      <section class="content-section print-only-section">
+        <header class="section-header">
+          <h2>Projects</h2>
+        </header>
+        {% for project in site.data.projects %}
+        <div class="resume-item project-print-item">
+          <h3 class="project-print-title">{{ project.name }}</h3>
+          <p><strong>Duration:</strong> {{ project.duration }}</p>
+          <p>{{ project.description }}</p>
+          {% if project.video_url or project.overview_pdf or project.github_url %}
+          <p><strong>Link</strong></p>
+          <ul>
+            {% if project.video_url and project.video_url != "" %}
+            <li>Demo video: {{ project.video_url }}</li>
+            {% endif %}
+            {% if project.overview_pdf and project.overview_pdf != "" %}
+            <li>Overview PDF: {{ project.overview_pdf }}</li>
+            {% endif %}
+            {% if project.github_url and project.github_url != "" %}
+            <li>Github: {{ project.github_url }}</li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </section>
 
       <!-- {% if site.resume_section_links %}
       <section class="content-section">
