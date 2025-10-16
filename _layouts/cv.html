@@ -5,6 +5,63 @@
   {% include head.html %}
   {% include header.html %}
 
+  <style>
+    /* Education formatting */
+    .edu-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .edu-degree { font-size: 1.5rem; font-weight: 800; }
+    .edu-year { font-size: 1.1rem; white-space: nowrap; }
+    .edu-uni { font-size: 1.1rem; margin-top: 4px; font-weight: 600; }
+    .edu-meta { list-style: none; padding: 0; margin: 6px 0 0; }
+    .edu-meta li { margin: 2px 0; font-weight: 400; }
+    .edu-meta li::before { content: "- "; }
+    .edu-meta li { 
+      text-indent: -4.5em; 
+      padding-left: 5.0em; 
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-wrap: balance;
+      line-height: 1.3;
+      max-width: 100%;
+    }
+
+    /* Experience formatting */
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .exp-company { font-size: 1.5rem; font-weight: 800; }
+    .exp-duration { font-size: 1.1rem; white-space: nowrap; }
+    .exp-position { font-size: 1.1rem; margin-top: 4px; font-weight: 600; }
+    .exp-company a { font-size: 0.75rem; margin-left: 6px; text-decoration: none; }
+    .exp-summary { margin-top: 6px; font-weight: 400; }
+
+    /* Projects formatting */
+    .proj-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .proj-title { font-size: 1.5rem; font-weight: 800; }
+    .proj-duration { font-size: 1.1rem; white-space: nowrap; }
+    .proj-role { font-size: 1.1rem; margin-top: 4px; font-weight: 600; }
+    .proj-description { margin-top: 6px; font-weight: 400; }
+
+    /* Skills formatting */
+    .skill-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .skill-description { font-weight: 400; }
+
+    /* Publications formatting */
+    .pub-year { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+    .pub-list { list-style: none; padding-left: 1.5em; margin: 0; }
+    .pub-item { margin-bottom: 12px; position: relative; line-height: 1.4; font-weight: 300; }
+    .pub-item::before { content: "•"; position: absolute; left: -1.2em; }
+    .pub-item > strong { font-size: 1rem; font-weight: 700; }
+    .pub-item a { font-size: 0.75rem; margin-left: 6px; text-decoration: none; font-weight: 300; }
+    .pub-item strong { font-weight: 700; }
+    .pub-authors { font-size: 0.95rem; }
+    .pub-venue { font-size: 0.95rem; }
+
+    /* Patents formatting */
+    .patent-list { list-style: none; padding-left: 1.5em; margin: 0; }
+    .patent-item { margin-bottom: 12px; position: relative; line-height: 1.4; font-weight: 300; }
+    .patent-item::before { content: "•"; position: absolute; left: -1.2em; }
+    .patent-item > strong { font-size: 1rem; font-weight: 700; }
+    .patent-item strong { font-weight: 700; }
+  </style>
+
   <body class="theme-{% if site.resume_theme %}{{ site.resume_theme }}{% endif %}">
 
     <div class="wrapper" itemscope itemtype="http://schema.org/Person">
@@ -20,19 +77,15 @@
         </header>
         {% for education in site.data.education %}
         <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
-          <h3 class="resume-item-title" itemprop="name">{{ education.uni }}</h3>
-          <h4 class="resume-item-details group" itemprop="description" style="white-space: normal; overflow: visible;">
-            <span class="degree">{{ education.degree | escape }}</span>
-            <span class="year">{{ education.year }}</span>
-          </h4>
-          <h5 class="resume-item-details award-title" itemprop="description">{{ education.award }}</h5>
-          <p class="resume-item-copy" itemprop="description">
-          <ul class="resume-item-list">
-            {% for award in education.awards %}
-            <li>{{ award.award }}</li>
-            {% endfor %}
+          <div class="edu-header">
+            <span class="edu-degree" itemprop="description">{{ education.degree | escape }}</span>
+            <span class="edu-year">{{ education.year }}</span>
+          </div>
+          <div class="edu-uni" itemprop="name">{{ education.uni }}</div>
+          <ul class="edu-meta">
+            {% if education.advisor %}<li>Advisor : {{ education.advisor }}</li>{% endif %}
+            {% if education.thesis %}<li>Thesis : {{ education.thesis }}</li>{% endif %}
           </ul>
-          <p class="resume-item-copy">{{ education.summary }}</p>
         </div>
         {% endfor %}
       </section>
@@ -45,11 +98,12 @@
         </header>
         {% for job in site.data.experience %}
         <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
-          <h3 class="resume-item-title" itemprop="name">{{ job.company }}</h3>
-          <h4 class="resume-item-details" itemprop="description" style="white-space: normal; overflow: visible;">
-            <span class="position">{{ job.position }}</span><span class="duration">{{ job.duration }}</span>
-          </h4>
-          <p class="resume-item-copy">{{ job.summary }}</p>
+          <div class="exp-header">
+            <span class="exp-company" itemprop="name">{{ job.company }}{% if job.url %} <a href="{{ job.url }}">[link]</a>{% endif %}</span>
+            <span class="exp-duration">{{ job.duration }}</span>
+          </div>
+          <div class="exp-position" itemprop="description">{{ job.position }}</div>
+          <div class="exp-summary">{{ job.summary }}</div>
         </div>
         {% endfor %}
       </section>
@@ -58,16 +112,40 @@
       {% if site.resume_section_projects %}
       <section class="content-section">
         <header class="section-header">
-          <h2>Projects</h2>
+          <h2>Publications</h2>
         </header>
-        {% for project in site.data.projects %}
-        <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
-          <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
-          <h3 class="resume-item-title" itemprop="name">{% if project.url %}<a href="{{ project.url }}" itemprop="url">{{ project.project }}</a>{% else %}{{ project.project }}{% endif %}</h3>
-          <h4 class="resume-item-details" itemprop="description">{{ project.role }}  &bull; {{ project.duration }}</h4>
-          <p class="resume-item-copy">{{ project.description }}</p>
+        {% for year_group in site.data.publications %}
+        <div class="resume-item">
+          <h3 class="pub-year">{{ year_group.year }}</h3>
+          <ul class="pub-list">
+            {% for paper in year_group.papers %}
+            <li class="pub-item">
+              <strong>{{ paper.title }}</strong>{% if paper.url %} <a href="{{ paper.url }}">[link]</a>{% endif %}
+              {% if paper.authors %}<br><span class="pub-authors">{{ paper.authors | replace: "Jeongwoo Park", "<strong>Jeongwoo Park</strong>" }}</span>{% endif %}
+              {% if paper.venue %}<br><span class="pub-venue">{{ paper.venue }}</span>{% endif %}
+            </li>
+            {% endfor %}
+          </ul>
         </div>
         {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if site.resume_section_recognition %}
+      <section class="content-section">
+        <header class="section-header">
+          <h2>Patents</h2>
+        </header>
+        <ul class="patent-list">
+          {% for patent in site.data.patents %}
+          <li class="patent-item">
+            <strong>{{ patent.title }}</strong>
+            {% if patent.number %}<br>{{ patent.number }}{% endif %}
+            {% if patent.status or patent.year %}<br>{{ patent.status }}{% if patent.status and patent.year %}, {% endif %}{{ patent.year }}{% endif %}
+            {% if patent.inventors %}<br>발명자: {{ patent.inventors | replace: "Jeongwoo Park", "<strong>Jeongwoo Park</strong>" }}{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
       </section>
       {% endif %}
 
@@ -78,38 +156,8 @@
         </header>
         {% for skill in site.data.skills %}
         <div class="resume-item">
-          <h4 class="resume-item-details">{{ skill.skill }}</h4>
-          <p class="resume-item-copy">{{ skill.description }}</p>
-        </div>
-        {% endfor %}
-      </section>
-      {% endif %}
-
-      {% if site.resume_section_recognition %}
-      <section class="content-section">
-        <header class="section-header">
-          <h2>Recognition</h2>
-        </header>
-        {% for recognition in site.data.recognitions %}
-        <div class="resume-item">
-          <h3 class="resume-item-title" itemprop="award">{{ recognition.award }}</h3>
-          <h4 class="resume-item-details">{{ recognition.organization }} &bull; {{ recognition.year }}</h4>
-          <p class="resume-item-copy">{{ recognition.summary }}</p>
-        </div>
-        {% endfor %}
-      </section>
-      {% endif %}
-
-      {% if site.resume_section_associations %}
-      <section class="content-section">
-        <header class="section-header">
-          <h2>Associations</h2>
-        </header>
-        {% for association in site.data.associations %}
-        <div class="resume-item" itemscope itemprop="memberOf" itemtype="http://schema.org/Organization">
-          <h3 class="resume-item-title" itemprop="name">{% if association.url %}<a href="{{ association.url }}">{{ association.organization }}</a>{% else %}{{ association.organization }}{% endif %}</h3>
-          <h4 class="resume-item-details" itemprop="description">{{ association.role }} &bull; {{ association.year }}</h4>
-          <p class="resume-item-copy">{{ association.summary }}</p>
+          <div class="skill-title">{{ skill.skill }}</div>
+          <div class="skill-description">{{ skill.description }}</div>
         </div>
         {% endfor %}
       </section>
@@ -160,6 +208,34 @@
 
     </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Publications 제목 처리
+      const pubItems = document.querySelectorAll('.pub-item > strong');
+      pubItems.forEach(function(item) {
+        let text = item.innerHTML;
+        // 큰따옴표 안 내용 강조
+        text = text.replace(/"([^"]+)"/g, '<strong>"$1"</strong>');
+        // 괄호 안 내용 강조
+        text = text.replace(/\(([^)]+)\)/g, '<strong>($1)</strong>');
+        // 대괄호 안 내용 강조
+        text = text.replace(/\[([^\]]+)\]/g, '<strong>[$1]</strong>');
+        item.outerHTML = text;
+      });
+
+      // Patents 제목 처리
+      const patentItems = document.querySelectorAll('.patent-item > strong');
+      patentItems.forEach(function(item) {
+        let text = item.innerHTML;
+        // 큰따옴표 안 내용 강조
+        text = text.replace(/"([^"]+)"/g, '<strong>"$1"</strong>');
+        // 괄호 안 내용 강조
+        text = text.replace(/\(([^)]+)\)/g, '<strong>($1)</strong>');
+        item.outerHTML = text;
+      });
+
+    });
+  </script>
   </body>
 
 </html>

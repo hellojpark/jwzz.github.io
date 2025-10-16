@@ -1,13 +1,15 @@
 # Degree
 - degree: "M.S. in Electronic Engineering"
-  uni: Hanyang University
+  uni: "Hanyang University, Seoul"
   year: "Mar. 2023 - Feb. 2025"
+  advisor: "Je-Hyeong Hong"
+  thesis: "Construction and Utilization of a Mixed Reality based Multimodal Hand Gesture Dataset Robust to Hand Textures"
   # awards:
   #   - award: Summa Cumme Laude graduate
   # summary: If you had any meaningful roles at college, feel free to write about them here
 
 - degree: "B.S. in Mechanical Engineering"
-  uni: Hanyang University
+  uni: Hanyang University, Seoul
   year: "Mar. 2015 - Aug. 2022"
   # award: Most likely to succeed
   # summary: You can choose to have either a single or multiple awards

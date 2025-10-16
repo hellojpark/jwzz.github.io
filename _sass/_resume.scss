@@ -99,9 +99,9 @@
     line-height: 1.4;
     margin: 0;
   }
-  // ensure social icons are clearly visible
+  ensure social icons are clearly visible
   .home-info .icon path { fill: #333; }
-  .home-info .icon { width: 28px; height: 28px; display: inline-block; }
+  .home-info .icon { display: inline-block; }
   /* Force Instagram path fill in case presentation attributes override */
   .home-info .icon #Instagram { fill: #333 !important; }
 }
