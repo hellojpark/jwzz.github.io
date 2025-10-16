@@ -2,7 +2,7 @@
 title: "Jekyll Resume Template"
 description: "A resume template for Jekyll and GitHub Pages sites."
 baseurl: "/jwzz.github.io"
-baseurl: ""
+# baseurl: ""
 url: "https://hellojpark.github.io"
 
 # Build settings
