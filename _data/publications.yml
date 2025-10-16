@@ -4,20 +4,17 @@
 - year: 2025
   papers:
     - title: '[Domestic] "파운데이션 모델을 활용하 CT 영상 기반 경동맥 분할 및 3차원 혈관 구조 복원 기법", Sun Jo, Jeongwoo Park, Simon Song*, Je-Hyeong Hong*, 제 36회 영상처리 및 이해에 관한 워크샵 (IPIU 2025)'
-      # authors: "Sun Jo, Jeongwoo Park, Simon Song*, Je-Hyeong Hong*"
-      # venue: "제 36회 영상처리 및 이해에 관한 워크샵 (IPIU 2025)"
       url: ""
+      github_url: ""  # GitHub 저장소 링크 (없으면 비워두기)
 
 - year: 2024
   papers:
     - title: '[International] "HoloGesture: A Multimodal Dataset for Hand Gesture Recognition Robust to Hand Textures on Head-Mounted Mixed-Reality Devices", Jeongwoo Park, Je-Hyeong Hong*, IEEE International Conference on Image Processing (ICIP 2024)'
-      # authors: "Jeongwoo Park, Je-Hyeong Hong*"
-      # venue: "IEEE International Conference on Image Processing (ICIP), 2024"
       url: "https://ieeexplore.ieee.org/document/10648161"
+      github_url: "https://github.com/hellojpark/hologesture"  # GitHub 저장소 링크 (없으면 비워두기)
 
 - year: 2023
   papers:
     - title: '[Domestic] "홀로렌즈2 기반 손동작 인식 연구를 위한 손 영상 분할", Jeongwoo Park, Je-Hyeong Hong*, Summer Annual Conference of (IEIE 2023)'
-      # authors: "Jeongwoo Park, Je-Hyeong Hong*"
-      # venue: "Summer Annual Conference of IEIE, 2023"
       url: "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11522360"
+      github_url: ""  # GitHub 저장소 링크 (없으면 비워두기)

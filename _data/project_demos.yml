@@ -1,9 +1,0 @@
-- name: "KT MIDM Demo"
-  duration: "2025.03 ~ 2025.06"
-  description: "Multimodal interaction demo project using hand gesture recognition."
-  video_url: "https://www.youtube.com/embed/VIDEO_ID"  # 유튜브 영상 ID 넣기
-
-- name: "Another Project"
-  duration: "2024.11 ~ 2025.01"
-  description: "Another demo project description here."
-  video_url: "https://www.youtube.com/embed/ANOTHER_VIDEO_ID"

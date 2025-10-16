@@ -40,8 +40,10 @@
     .proj-description { margin-top: 6px; font-weight: 400; }
 
     /* Skills formatting */
-    .skill-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
-    .skill-description { font-weight: 400; }
+    .skill-list { list-style: none; padding-left: 1.5em; margin: 0; }
+    .skill-item { margin-bottom: 12px; position: relative; line-height: 1.4; font-weight: 300; }
+    .skill-item::before { content: "•"; position: absolute; left: -1.2em; }
+    .skill-item strong { font-weight: 700; }
 
     /* Publications formatting */
     .pub-year { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
@@ -52,6 +54,7 @@
     .pub-item a { font-size: 0.75rem; margin-left: 6px; text-decoration: none; font-weight: 300; }
     .pub-item strong { font-weight: 700; }
     .pub-authors { font-size: 0.95rem; }
+    .pub-authors strong { font-weight: 700; text-decoration: underline; }
     .pub-venue { font-size: 0.95rem; }
 
     /* Patents formatting */
@@ -60,6 +63,7 @@
     .patent-item::before { content: "•"; position: absolute; left: -1.2em; }
     .patent-item > strong { font-size: 1rem; font-weight: 700; }
     .patent-item strong { font-weight: 700; }
+    .patent-item a { font-size: 0.75rem; margin-left: 10px; text-decoration: none; font-weight: 300; }
   </style>
 
   <body class="theme-{% if site.resume_theme %}{{ site.resume_theme }}{% endif %}">
@@ -120,8 +124,8 @@
           <ul class="pub-list">
             {% for paper in year_group.papers %}
             <li class="pub-item">
-              <strong>{{ paper.title }}</strong>{% if paper.url %} <a href="{{ paper.url }}">[link]</a>{% endif %}
-              {% if paper.authors %}<br><span class="pub-authors">{{ paper.authors | replace: "Jeongwoo Park", "<strong>Jeongwoo Park</strong>" }}</span>{% endif %}
+              <strong class="pub-title">{{ paper.title }}</strong>{% if paper.url and paper.url != "" %} <a href="{{ paper.url }}">[paper]</a>{% endif %}{% if paper.github_url and paper.github_url != "" %} <a href="{{ paper.github_url }}">[github]</a>{% endif %}
+              {% if paper.authors %}<br><span class="pub-authors">{{ paper.authors }}</span>{% endif %}
               {% if paper.venue %}<br><span class="pub-venue">{{ paper.venue }}</span>{% endif %}
             </li>
             {% endfor %}
@@ -139,7 +143,7 @@
         <ul class="patent-list">
           {% for patent in site.data.patents %}
           <li class="patent-item">
-            <strong>{{ patent.title }}</strong>
+            <strong>{{ patent.title }}</strong>{% if patent.github_url and patent.github_url != "" %} <a href="{{ patent.github_url }}">[github]</a>{% endif %}
             {% if patent.number %}<br>{{ patent.number }}{% endif %}
             {% if patent.status or patent.year %}<br>{{ patent.status }}{% if patent.status and patent.year %}, {% endif %}{{ patent.year }}{% endif %}
             {% if patent.inventors %}<br>발명자: {{ patent.inventors | replace: "Jeongwoo Park", "<strong>Jeongwoo Park</strong>" }}{% endif %}
@@ -154,12 +158,14 @@
         <header class="section-header">
           <h2>Skills</h2>
         </header>
-        {% for skill in site.data.skills %}
-        <div class="resume-item">
-          <div class="skill-title">{{ skill.skill }}</div>
-          <div class="skill-description">{{ skill.description }}</div>
-        </div>
-        {% endfor %}
+        <ul class="skill-list">
+          {% for skill in site.data.skills %}
+          <li class="skill-item">
+            <strong>{{ skill.skill }}</strong>
+            {% if skill.description %}<br>{{ skill.description }}{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
       </section>
       {% endif %}
 
@@ -178,7 +184,7 @@
       </section>
       {% endif %}
 
-      {% if site.resume_section_links %}
+      <!-- {% if site.resume_section_links %}
       <section class="content-section">
         <header class="section-header">
           <h2>Additional Links</h2>
@@ -191,18 +197,8 @@
           </ul>
         </div>
       </section>
-      {% endif %}
+      {% endif %} -->
 
-      {% if site.resume_print_social_links %}
-      <section class="content-section print-only">
-        <header class="section-header">
-          <h2>Social Links</h2>
-        </header>
-        <div class="resume-item">
-          {% include print-social-links.html %}
-        </div>
-      </section>
-      {% endif %}
 
       <!-- footer removed per user request -->
 
@@ -214,12 +210,16 @@
       const pubItems = document.querySelectorAll('.pub-item > strong');
       pubItems.forEach(function(item) {
         let text = item.innerHTML;
-        // 큰따옴표 안 내용 강조
+        // 1. 먼저 Jeongwoo Park를 플레이스홀더로 변경
+        text = text.replace(/Jeongwoo Park/g, '__JEONGWOO_PARK__');
+        // 2. 큰따옴표 안 내용 강조
         text = text.replace(/"([^"]+)"/g, '<strong>"$1"</strong>');
-        // 괄호 안 내용 강조
+        // 3. 괄호 안 내용 강조
         text = text.replace(/\(([^)]+)\)/g, '<strong>($1)</strong>');
-        // 대괄호 안 내용 강조
+        // 4. 대괄호 안 내용 강조
         text = text.replace(/\[([^\]]+)\]/g, '<strong>[$1]</strong>');
+        // 5. 플레이스홀더를 강조된 Jeongwoo Park로 복원
+        text = text.replace(/__JEONGWOO_PARK__/g, '<span style="font-weight: 700; text-decoration: underline;">Jeongwoo Park</span>');
         item.outerHTML = text;
       });
 
@@ -227,10 +227,14 @@
       const patentItems = document.querySelectorAll('.patent-item > strong');
       patentItems.forEach(function(item) {
         let text = item.innerHTML;
-        // 큰따옴표 안 내용 강조
+        // 1. 먼저 Jeongwoo Park를 플레이스홀더로 변경
+        text = text.replace(/Jeongwoo Park/g, '__JEONGWOO_PARK__');
+        // 2. 큰따옴표 안 내용 강조
         text = text.replace(/"([^"]+)"/g, '<strong>"$1"</strong>');
-        // 괄호 안 내용 강조
+        // 3. 괄호 안 내용 강조
         text = text.replace(/\(([^)]+)\)/g, '<strong>($1)</strong>');
+        // 4. 플레이스홀더를 강조된 Jeongwoo Park로 복원
+        text = text.replace(/__JEONGWOO_PARK__/g, '<span style="font-weight: 700; text-decoration: underline;">Jeongwoo Park</span>');
         item.outerHTML = text;
       });
 
