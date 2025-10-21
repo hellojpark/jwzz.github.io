@@ -256,7 +256,16 @@
         <div class="resume-item project-print-item">
           <h3 class="project-print-title">{{ project.name }}</h3>
           <p><strong>Duration:</strong> {{ project.duration }}</p>
+          {% if project.description and project.description != "" %}
           <p>{{ project.description }}</p>
+          {% endif %}
+          {% if project.details %}
+          <ul>
+            {% for detail in project.details %}
+            <li>{{ detail }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
           {% if project.video_url or project.overview_pdf or project.github_url %}
           <p><strong>Link</strong></p>
           <ul>

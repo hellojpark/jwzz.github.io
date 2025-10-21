@@ -10,11 +10,22 @@ title: Projects
   
     {% for project in site.data.projects %}
     <div class="project-item">
+      <h2 class="project-item-title">{{ project.name }}</h2>
+      
       <div class="project-content">
         <div class="project-description">
-          <h2>{{ project.name }}</h2>
           <p><strong>Duration:</strong> {{ project.duration }}</p>
+          {% if project.description and project.description != "" %}
           <p>{{ project.description }}</p>
+          {% endif %}
+          
+          {% if project.details %}
+          <ul class="project-details">
+            {% for detail in project.details %}
+            <li>{{ detail }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
           
           <div class="project-links">
             <p><strong>Link</strong></p>
@@ -32,6 +43,7 @@ title: Projects
           </div>
         </div>
         
+        {% if project.video_url and project.video_url != "" %}
         <div class="project-video-container">
           {% if project.video_url contains 'drive.google.com' %}
             {% assign file_id = project.video_url | split: '/d/' | last | split: '/' | first %}
@@ -45,6 +57,7 @@ title: Projects
             </video>
           {% endif %}
         </div>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
@@ -64,6 +77,13 @@ title: Projects
   border-bottom: 1px solid #ddd; 
 }
 
+.project-item-title { 
+  font-size: 1.8rem; 
+  font-weight: 700; 
+  margin: 0 0 20px 0; 
+  color: #333; 
+}
+
 .project-content { 
   display: flex; 
   gap: 30px; 
@@ -75,14 +95,19 @@ title: Projects
   min-width: 300px; 
 }
 
-.project-description h2 { 
-  margin: 0 0 16px 0; 
-  font-size: 1.8rem; 
-  font-weight: 700; 
-}
-
 .project-description p { 
   margin: 8px 0; 
+  line-height: 1.6; 
+}
+
+.project-details { 
+  margin: 12px 0; 
+  padding-left: 1.5em; 
+  list-style-type: disc; 
+}
+
+.project-details li { 
+  margin: 6px 0; 
   line-height: 1.6; 
 }
 

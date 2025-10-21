@@ -1,20 +1,32 @@
-- name: "KT MIDM Demo"
+- name: "AI Agent for Self-Directed Learning"
   duration: "2025.07 ~ 2025.09"
-  description: "Multimodal interaction demo project using hand gesture recognition."
+  description: "An Educational LLM Agent Utilizing SFT and RAG for Interactive Learning Engagement"
+  details:  # bullet point로 표시될 상세 내용
   video_url: "https://drive.google.com/file/d/1_vcmQtdpwbFMUhFWwPha8UkYA7vn5fDm/view?usp=drive_link"
   overview_pdf: "https://drive.google.com/file/d/1kdO5WB8xgvIDhZM45zToZm_PG0xIRIyy/view?usp=drive_link"  # PDF 구글 드라이브 링크
   github_url: "https://github.com/hellojpark/KT-mi-dm-Education-AI-Agent"
 
 - name: "RAG-based Estate Recommendation Agent"
   duration: "2025.06 ~ 2025.07"
-  description: "Another demo project description here."
-  video_url: "https://www.youtube.com/embed/ANOTHER_VIDEO_ID"
-  overview_pdf: "https://drive.google.com/file/d/1YnsK7D4pc2fGdtYX33k5suIySyoORlaK/view?usp=drive_link"  # PDF 링크 없으면 비워두기
+  description: "Real Estate Listing Recommendation Service Using Web Crawling and RAG"
+  details:  # bullet point로 표시될 상세 내용
+  video_url: "https://drive.google.com/file/d/1E_HQqrYesTVVVbBD-iYX91cq3OgPVNj-/view?usp=drive_link"
+  overview_pdf: "https://drive.google.com/file/d/17td4qGE0jXfiLdlwSQk-rkewW2i9107j/view?usp=drive_link"  # PDF 링크 없으면 비워두기
   github_url: "https://github.com/hellojpark/Realtime_prediction-/tree/feature/estate_recommend"
 
-- name: "Anomaly Detection-based Semiconductor Defect Detection "
-  duration: "2024.03 ~ 2024.06"
-  description: "Another demo project description here."
-  video_url: ""
-  overview_pdf: "https://drive.google.com/file/d/1k2BTVStK1-3cgFptBsmuqRE3aI7w6Gnm/view?usp=drive_link"  # PDF 링크 없으면 비워두기
+# - name: "Anomaly Detection-based Semiconductor Defect Detection"
+#   duration: "2024.03 ~ 2024.06"
+#   description: ""
+#   details:  # bullet point로 표시될 상세 내용
+#     - ""
+#   video_url: ""
+#   overview_pdf: "https://drive.google.com/file/d/1k2BTVStK1-3cgFptBsmuqRE3aI7w6Gnm/view?usp=drive_link"  # PDF 링크 없으면 비워두기
+#   github_url: ""
+
+- name: "HoloLens 2 Demo Application"
+  duration: "2023.03 ~ 2023.04"
+  description: "A Demo Application Showcasing Hand Gesture-Based Interaction on the XR Device HoloLens 2"
+  details:  # bullet point로 표시될 상세 내용 (비워두면 표시 안됨)
+  video_url: "https://drive.google.com/file/d/1Z3Y3Be8Ml27ICttfOGH8ylQe5om4uD9f/view?usp=drive_link"
+  overview_pdf: ""  # PDF 링크 없으면 비워두기
   github_url: ""
