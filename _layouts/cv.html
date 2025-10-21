@@ -134,7 +134,9 @@
 
       <div class="cv-title-container">
         <h1 class="cv-main-title">Curriculum Vitae</h1>
-        <a href="javascript:window.print();" class="cv-download-link">[CV download]</a>
+        {% if site.cv_pdf_url %}
+        <a href="{{ site.cv_pdf_url }}" target="_blank" class="cv-download-link">[CV download]</a>
+        {% endif %}
       </div>
 
       {% if site.resume_section_education %}
@@ -216,7 +218,7 @@
       </section>
       {% endif %}
 
-      {% if site.resume_section_skills %}
+      <!-- {% if site.resume_section_skills %}
       <section class="content-section">
         <header class="section-header">
           <h2>Skills</h2>
@@ -230,7 +232,7 @@
           {% endfor %}
         </ul>
       </section>
-      {% endif %}
+      {% endif %} -->
 
       {% if site.resume_section_interests %}
       <section class="content-section">

@@ -3,7 +3,7 @@
 
 - year: 2025
   papers:
-    - title: '[Domestic] "파운데이션 모델을 활용하 CT 영상 기반 경동맥 분할 및 3차원 혈관 구조 복원 기법", Sun Jo, Jeongwoo Park, Simon Song*, Je-Hyeong Hong*, 제 36회 영상처리 및 이해에 관한 워크샵 (IPIU 2025)'
+    - title: '[Domestic] "파운데이션 모델을 활용한 CT 영상 기반 경동맥 분할 및 3차원 혈관 구조 복원 기법", Sun Jo, Jeongwoo Park, Simon Song*, Je-Hyeong Hong*, 제 36회 영상처리 및 이해에 관한 워크샵 (IPIU 2025)'
       url: ""
       github_url: ""  # GitHub 저장소 링크 (없으면 비워두기)
 

@@ -1,0 +1,131 @@
+---
+title: Research
+---
+{% include head.html %}
+{% include header.html %}
+
+
+<div class="wrapper">
+    <h1 class="research-main-title">Research</h1>
+  
+    {% for year_group in site.data.publications %}
+    <div class="research-year-section">
+      <h2 class="research-year">{{ year_group.year }}</h2>
+      
+      {% for paper in year_group.papers %}
+      <div class="research-item">
+        <h3 class="research-title">{{ paper.title }}</h3>
+        
+        {% if paper.authors %}
+        <p class="research-authors">{{ paper.authors }}</p>
+        {% endif %}
+        
+        {% if paper.venue %}
+        <p class="research-venue">{{ paper.venue }}</p>
+        {% endif %}
+        
+        {% if paper.url or paper.github_url %}
+        <div class="research-links">
+          <p><strong>Link</strong></p>
+          <ul>
+            {% if paper.url and paper.url != "" %}
+            <li><a href="{{ paper.url }}" target="_blank">[Paper]</a></li>
+            {% endif %}
+            {% if paper.github_url and paper.github_url != "" %}
+            <li><a href="{{ paper.github_url }}" target="_blank">[Github]</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+<style>
+.research-main-title { 
+  color: #0066cc; 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  margin: 40px 0 50px 0; 
+}
+
+.research-year-section { 
+  margin-bottom: 50px; 
+}
+
+.research-year { 
+  font-size: 2rem; 
+  font-weight: 800; 
+  color: #333; 
+  margin-bottom: 30px; 
+  padding-bottom: 10px; 
+  border-bottom: 2px solid #0066cc; 
+}
+
+.research-item { 
+  margin-bottom: 30px; 
+  padding-bottom: 30px; 
+  border-bottom: 1px solid #ddd; 
+}
+
+.research-item:last-child { 
+  border-bottom: none; 
+}
+
+.research-title { 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+  margin: 0 0 12px 0; 
+  line-height: 1.4; 
+  color: #333; 
+}
+
+.research-authors { 
+  font-size: 1rem; 
+  margin: 8px 0; 
+  color: #555; 
+  line-height: 1.4; 
+}
+
+.research-venue { 
+  font-size: 0.95rem; 
+  margin: 8px 0; 
+  color: #666; 
+  font-style: italic; 
+}
+
+.research-links { 
+  margin-top: 12px; 
+}
+
+.research-links p { 
+  margin: 0 0 8px 0; 
+  font-weight: 600; 
+  font-size: 0.95rem; 
+}
+
+.research-links ul { 
+  margin: 0; 
+  padding-left: 1.5em; 
+  list-style-type: disc; 
+}
+
+.research-links li { 
+  margin: 4px 0; 
+}
+
+.research-links a { 
+  color: #0066cc; 
+  text-decoration: none; 
+  font-size: 0.95rem; 
+}
+
+.research-links a:hover { 
+  text-decoration: underline; 
+}
+</style>
+
+
+
