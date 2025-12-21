@@ -8,59 +8,83 @@ title: Projects
 <div class="wrapper">
     <h1 class="project-main-title">Projects</h1>
   
-    {% for project in site.data.projects %}
-    <div class="project-item">
-      <h2 class="project-item-title">{{ project.name }}</h2>
+    {% comment %} 연도별로 프로젝트 그룹화 및 정렬 {% endcomment %}
+    {% assign current_year = 0 %}
+    {% assign projects_sorted = site.data.projects | sort: "duration" | reverse %}
+    
+    {% for project in projects_sorted %}
+      {% comment %} Duration에서 년도 추출 (예: "2025.07 ~ 2025.09" -> "2025") {% endcomment %}
+      {% assign duration_first = project.duration | split: "." | first %}
+      {% assign project_year = duration_first | plus: 0 %}
       
-      <div class="project-content">
-        <div class="project-description">
-          <p><strong>Duration:</strong> {{ project.duration }}</p>
-          {% if project.description and project.description != "" %}
-          <p>{{ project.description }}</p>
-          {% endif %}
-          
-          {% if project.details %}
-          <ul class="project-details">
-            {% for detail in project.details %}
-            <li>{{ detail }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          
-          <div class="project-links">
-            <p><strong>Link</strong></p>
-            <ul>
-              {% if project.video_url and project.video_url != "" %}
-              <li><a href="{{ project.video_url }}" target="_blank">[Demo video]</a></li>
-              {% endif %}
-              {% if project.overview_pdf and project.overview_pdf != "" %}
-              <li><a href="{{ project.overview_pdf }}" target="_blank">[Overview PDF]</a></li>
-              {% endif %}
-              {% if project.github_url and project.github_url != "" %}
-              <li><a href="{{ project.github_url }}" target="_blank">[Github]</a></li>
-              {% endif %}
-            </ul>
+      {% comment %} 새로운 연도 섹션 시작 {% endcomment %}
+      {% if project_year != current_year %}
+        {% if current_year != 0 %}
           </div>
-        </div>
+        {% endif %}
+        {% assign current_year = project_year %}
+        <div class="project-year-section">
+          <header class="project-year-header">
+            <h2 class="project-year-title">{{ current_year }}</h2>
+          </header>
+      {% endif %}
+      
+      <div class="project-item">
+        <h3 class="project-item-title">{{ project.name }}</h3>
         
-        {% if project.video_url and project.video_url != "" %}
-        <div class="project-video-container">
-          {% if project.video_url contains 'drive.google.com' %}
-            {% assign file_id = project.video_url | split: '/d/' | last | split: '/' | first %}
-            <iframe class="project-video" src="https://drive.google.com/file/d/{{ file_id }}/preview" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          {% elsif project.video_url contains 'youtube.com' or project.video_url contains 'youtu.be' %}
-            <iframe class="project-video" src="{{ project.video_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          {% else %}
-            <video class="project-video" controls>
-              <source src="{{ project.video_url }}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+        <div class="project-content">
+          <div class="project-description">
+            <p><strong>Duration:</strong> {{ project.duration }}</p>
+            {% if project.description and project.description != "" %}
+            <p>{{ project.description }}</p>
+            {% endif %}
+            
+            {% if project.details %}
+            <ul class="project-details">
+              {% for detail in project.details %}
+              <li>{{ detail }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            
+            <div class="project-links">
+              <p><strong>Link</strong></p>
+              <ul>
+                {% if project.video_url and project.video_url != "" %}
+                <li><a href="{{ project.video_url }}" target="_blank">[Demo video]</a></li>
+                {% endif %}
+                {% if project.overview_pdf and project.overview_pdf != "" %}
+                <li><a href="{{ project.overview_pdf }}" target="_blank">[Overview PDF]</a></li>
+                {% endif %}
+                {% if project.github_url and project.github_url != "" %}
+                <li><a href="{{ project.github_url }}" target="_blank">[Github]</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          
+          {% if project.video_url and project.video_url != "" %}
+          <div class="project-video-container">
+            {% if project.video_url contains 'drive.google.com' %}
+              {% assign file_id = project.video_url | split: '/d/' | last | split: '/' | first %}
+              <iframe class="project-video" src="https://drive.google.com/file/d/{{ file_id }}/preview" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            {% elsif project.video_url contains 'youtube.com' or project.video_url contains 'youtu.be' %}
+              <iframe class="project-video" src="{{ project.video_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% else %}
+              <video class="project-video" controls>
+                <source src="{{ project.video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% endif %}
+          </div>
           {% endif %}
         </div>
-        {% endif %}
       </div>
-    </div>
     {% endfor %}
+    
+    {% if current_year != 0 %}
+      </div>
+    {% endif %}
   </div>
 
 <style>
@@ -69,6 +93,26 @@ title: Projects
   font-size: 2.5rem; 
   font-weight: 700; 
   margin: 40px 0 50px 0; 
+}
+
+.project-year-section {
+  margin-bottom: 50px;
+}
+
+.project-year-header {
+  border-top: 4px solid #c7c7c7;
+  border-bottom: 2px solid #c7c7c7;
+  padding: .2rem 0 .4rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-year-title {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.05rem;
+  margin: 0;
+  color: #333;
 }
 
 .project-item { 

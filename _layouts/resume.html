@@ -85,20 +85,28 @@
       align-items: center;
     }
     .home-hero .avatar {
-      max-width: 160px;
-      height: auto;
       border-radius: 8px;
       display: block;
       margin: 0;         /* 좌측 정렬 보장 */
+      object-fit: cover;
+      object-position: center;
     }
     .home-info h1 {
       margin: 0 0 6px;
-      font-size: 1.8rem; /* 이름 크기 약간 크게 */
-      line-height: 1.2;
+      font-size: 1.1rem; /* 이름과 이메일 같은 크기 */
+      font-weight: normal; /* 강조 제거 */
+      line-height: 1.4;
+      font-family: inherit; /* body 폰트 상속 (이메일, Follow Me와 동일) */
+    }
+    .home-info h1 .home-label {
+      font-weight: 600; /* E-mail, Follow Me 라벨과 동일 */
+    }
+    .home-info h1 > :not(.home-label) {
+      font-weight: normal; /* 이름 텍스트는 이메일 주소와 동일 */
     }
     .home-email {
       margin: 0;
-      font-size: 1.1rem; /* 이메일 크기: 이름보다 살짝 작게 */
+      font-size: 1.1rem; /* 이름과 같은 크기 */
       line-height: 1.4;
     }
     .home-email a { color: inherit; text-decoration: none; }
@@ -106,7 +114,41 @@
       text-decoration: underline;
     }
 
-    .executive-summary { margin-top: 16px; }
+    .executive-summary { 
+      margin-bottom: 24px; 
+      font-size: 2.34rem !important;
+      line-height: 1.4;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .executive-summary {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    @media (max-width: 768px) {
+      .executive-summary {
+        white-space: normal;
+        font-size: 1.8rem !important;
+      }
+    }
+    .executive-summary p {
+      margin: 0;
+    }
+    .intro-description { 
+      margin-bottom: 24px;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .intro-description p {
+      margin: 0;
+    }
 
     /* Home icon links under name/email */
     .home-info .icon-links {
@@ -139,21 +181,24 @@
       <meta itemprop="address" content="{{ site.resume_contact_address }}"/>
 
       <header class="page-header">
+        <div class="executive-summary" itemprop="description">
+          {{ site.resume_header_intro }}
+        </div>
+        <div class="intro-description">
+          {{ site.resume_intro_description }}
+        </div>
         <div class="home-hero">
           {% if site.resume_avatar == 'true' %}
           <img src="{{ site.baseurl }}/images/avatar.jpg" alt="my photo" class="avatar no-print" itemprop="image">
           {% endif %}
           <div class="home-info">
-            <h1 class="header-name" itemprop="name">{{ site.resume_name }}</h1>
+            <h1 class="header-name" itemprop="name"><span class="home-label">Name : </span>{{ site.resume_name }}</h1>
             <p class="home-email"><span class="home-label">E-mail :</span> <a href="mailto:{{ site.resume_contact_email }}">{{ site.resume_contact_email }}</a></p>
             <div class="home-follow-row">
               <span class="home-follow">Follow Me : </span>
               {% include icon-links.html %}
             </div>
           </div>
-        </div>
-        <div class="executive-summary" itemprop="description">
-          {{ site.resume_header_intro }}
         </div>
       </header>
 

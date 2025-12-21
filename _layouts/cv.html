@@ -38,7 +38,7 @@
     .proj-duration { font-size: 1.1rem; white-space: nowrap; }
     .proj-role { font-size: 1.1rem; margin-top: 4px; font-weight: 600; }
     .proj-description { margin-top: 6px; font-weight: 400; }
-
+    
     /* Skills formatting */
     .skill-list { list-style: none; padding-left: 1.5em; margin: 0; }
     .skill-item { margin-bottom: 12px; position: relative; line-height: 1.4; font-weight: 300; }
@@ -53,6 +53,13 @@
     .pub-item > strong { font-size: 1rem; font-weight: 700; }
     .pub-item a { font-size: 0.75rem; margin-left: 6px; text-decoration: none; font-weight: 300; }
     .pub-item strong { font-weight: 700; }
+    
+    /* Projects section - 강조된 제목 (bullet point 내 제목) */
+    .pub-item > strong.pub-title,
+    .pub-item strong.pub-title { 
+      font-weight: 800 !important; 
+      font-size: 1.1rem !important;
+    }
     .pub-authors { font-size: 0.95rem; }
     .pub-authors strong { font-weight: 700; text-decoration: underline; }
     .pub-venue { font-size: 0.95rem; }
@@ -249,7 +256,49 @@
       </section>
       {% endif %}
 
-      <!-- Projects section for PDF export only -->
+      <!-- Projects section -->
+      {% if site.resume_section_projects %}
+      <section class="content-section">
+        <header class="section-header">
+          <h2>Projects</h2>
+        </header>
+        {% comment %} 연도별로 프로젝트 그룹화 {% endcomment %}
+        {% assign current_year = 0 %}
+        {% assign projects_sorted = site.data.projects | sort: "duration" | reverse %}
+        
+        {% for project in projects_sorted %}
+          {% comment %} Duration에서 년도 추출 {% endcomment %}
+          {% assign duration_first = project.duration | split: "." | first %}
+          {% assign project_year = duration_first | plus: 0 %}
+          
+          {% comment %} 새로운 연도 섹션 시작 {% endcomment %}
+          {% if project_year != current_year %}
+            {% if current_year != 0 %}
+              </ul>
+            </div>
+            {% endif %}
+            {% assign current_year = project_year %}
+            <div class="resume-item">
+              <h3 class="pub-year">{{ current_year }}</h3>
+              <ul class="pub-list">
+          {% endif %}
+          
+          <li class="pub-item">
+            <strong class="pub-title">{{ project.name }}</strong>{% if project.video_url and project.video_url != "" %} <a href="{{ project.video_url }}" target="_blank">[video]</a>{% endif %}{% if project.overview_pdf and project.overview_pdf != "" %} <a href="{{ project.overview_pdf }}" target="_blank">[pdf]</a>{% endif %}{% if project.github_url and project.github_url != "" %} <a href="{{ project.github_url }}" target="_blank">[github]</a>{% endif %}
+            {% if project.description and project.description != "" %}
+            <br><span class="pub-venue">{{ project.description }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+        
+        {% if current_year != 0 %}
+          </ul>
+        </div>
+        {% endif %}
+      </section>
+      {% endif %}
+      
+      <!-- Projects section for PDF export only (keep for backward compatibility) -->
       <section class="content-section print-only-section">
         <header class="section-header">
           <h2>Projects</h2>
@@ -308,9 +357,23 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Publications 제목 처리
-      const pubItems = document.querySelectorAll('.pub-item > strong');
-      pubItems.forEach(function(item) {
+      // Publications 제목 처리 (Projects 섹션 제외)
+      const allPubItems = document.querySelectorAll('.pub-item > strong');
+      
+      allPubItems.forEach(function(item) {
+        // Projects 섹션인지 확인 (부모 요소를 따라 올라가면서 확인)
+        let parent = item.closest('section');
+        if (parent) {
+          const header = parent.querySelector('header h2');
+          if (header && header.textContent.trim() === 'Projects') {
+            // Projects 섹션은 스킵하고 스타일만 적용
+            item.style.fontWeight = '800';
+            item.style.fontSize = '1.1rem';
+            return; // JavaScript 처리는 건너뛰기
+          }
+        }
+        
+        // Publications 섹션만 JavaScript 처리
         let text = item.innerHTML;
         // 1. 먼저 Jeongwoo Park를 플레이스홀더로 변경
         text = text.replace(/Jeongwoo Park/g, '__JEONGWOO_PARK__');

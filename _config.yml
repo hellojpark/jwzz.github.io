@@ -26,7 +26,21 @@ resume_contact_address:         "742 Evergreen Terrace, Springfield"
 resume_header_contact_info:     "742 Evergreen Terrace, Springfield • 555-7334 • lisasimpson@youremailaddress.com"
 display_header_contact_info:    "false"
 
-resume_header_intro: "<p>During my master's degree, I studied <strong>Gesture Recognition</strong>, <strong>Image Segmentation</strong>, and <strong>Gaussian Splatting</strong>, and I have continued to expand my expertise with a <strong>strong interest in AI technologies</strong>.</p>"
+resume_header_intro: "<p><strong>AI Engineer Who Takes on Challenges</strong></p>"
+resume_intro_description: "<p>기계공학을 전공한 이후, Computer Vision에 관심을 가져 석사과정에 
+ 해외 학회 포함 1저자 논문 2개, 특허 2건을 출원했습니다.
+ 이후에도 꾸준히 AI 기술에 관심을 가져 RAG, SFT를 활용한 추천 서비스 및 교육 AI Agent를 개발했습니다.
+ 이처럼 ~를 위해 꾸준히 도전하고 있습니다.
+
+ 석사 과정 동안 Computer Vision을 연구하며,
+ 데이터셋 구축 및 배포, 딥러닝 및 머신러닝 모델 개발을 경험했습니다.
+ 이 과정 동안 4,050개의 비디오를 직접 취득하고 기존에 없는 데이터셋을 구축하고 배포했습니다.
+ 또한, 딥러닝 모델을 구현해 데이터셋을 검증하거나 머신러닝 모델을 개발해 SOTA 모델의 학습시간보다 최대 88.5%정도를 감소시켰습니다.
+ 결과적으로 해외 학회를 포함해 1저자 논문 2개와 특허 2건을 출원했습니다.
+ 
+ 웹크롤링, RAG, 그리고 SFT를 활용한 추천 서비스 및 교육 AI Agent 개발을 경험했습니다
+ 또한, 현재는 K-league에서 제공한 데이터를 활용해 축구 패스 경로를 예측하는 모델을 개발하는 해커톤 대회에 참가 중입니다.</p>"
+# resume_header_intro: "<p>I studied <strong>Gesture Recognition</strong>, <strong>Image Segmentation</strong>, and <strong>Gaussian Splatting</strong>, and I have continued to expand my expertise with a <strong>strong interest in AI technologies</strong>.</p>"
 
 # CV PDF download link (Google Drive or direct PDF link)
 cv_pdf_url: "https://drive.google.com/file/d/1qXnvG60HTnL0yAZA4HrDB5vwfejTQWY0/view?usp=drive_link"

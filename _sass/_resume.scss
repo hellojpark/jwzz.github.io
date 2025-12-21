@@ -76,6 +76,37 @@
 
 // Home-specific overrides
 .page-header {
+  // Home page specific executive summary
+  .executive-summary {
+    font-size: 2.34rem !important;
+    line-height: 1.4;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+    // overflow 제거하여 글자가 잘리지 않도록
+    p {
+      margin: 0;
+    }
+    @include media_mobile {
+      white-space: normal;
+      font-size: 1.8rem !important;
+    }
+  }
+  
+  .intro-description {
+    margin-bottom: 24px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+    display: block; // 항상 표시
+    p {
+      margin: 0;
+    }
+  }
+
   .home-hero {
     display: flex;
     align-items: center;
@@ -83,16 +114,35 @@
   }
   .home-hero .avatar {
     margin: 0; // ensure left alignment instead of centered
-    width: 160px;
-    height: auto;
+    // 이름 + 이메일 + Follow Me 3줄의 총 높이 + 여유 공간
+    // 각 줄: 1.1rem * 1.4 line-height = 1.54rem
+    // margin-bottom: 6px = 약 0.375rem
+    // Follow Me 아래 여유: 약 0.25rem
+    // 총 높이: 약 1.54rem * 3 + 0.375rem + 0.25rem = 약 5.25rem
+    height: calc(1.1rem * 1.4 * 3 + 0.375rem + 0.25rem);
+    width: calc(1.1rem * 1.4 * 3 + 0.375rem + 0.25rem); // 정사각형
+    object-fit: cover;
+    object-position: center;
     border-radius: 8px;
+    flex-shrink: 0; // 크기 고정
   }
   .home-info .header-name {
     // override default big, centered name for home hero
-    font-size: 1.8rem;
-    line-height: 1.2;
+    font-size: 1.1rem;
+    font-weight: normal; // 덜 튀도록 normal로 설정
+    letter-spacing: normal; // 자간 정상화
+    line-height: 1.4;
     text-align: left;
     margin: 0 0 6px;
+    font-family: inherit; // body 폰트 상속 (serif)
+    // Name 라벨과 이름 부분을 구분
+    .home-label {
+      font-weight: 600; // E-mail, Follow Me와 동일
+    }
+    // 이름 텍스트 자체는 이메일 주소와 동일한 스타일
+    > :not(.home-label) {
+      font-weight: normal;
+    }
   }
   .home-email {
     font-size: 1.1rem;

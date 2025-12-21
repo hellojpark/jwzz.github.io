@@ -28,12 +28,22 @@
   overview_pdf: "https://drive.google.com/file/d/1k2BTVStK1-3cgFptBsmuqRE3aI7w6Gnm/view?usp=drive_link"  # PDF 링크 없으면 비워두기
   github_url: ""
 
-- name: "HoloLens 2 Demo Application"
+- name: "XR Device Demo Application"
   duration: "2023.03 ~ 2023.04"
   description: "A Demo Application Showcasing Hand Gesture-Based Interaction on the XR Device HoloLens 2"
   # details:  # bullet point로 표시될 상세 내용 (비워두면 표시 안됨)
   #   - "Microfost MRTK Tutorial기반 Unity 프로젝트 생성"
   #   - "UI 버튼 클릭 시 3D 파일 및 영상 시각화 하도록 스크립트 작성"
   video_url: "https://drive.google.com/file/d/1Z3Y3Be8Ml27ICttfOGH8ylQe5om4uD9f/view?usp=drive_link"
+  overview_pdf: ""  # PDF 링크 없으면 비워두기
+  github_url: ""
+
+- name: "Material and Structural Optimization of a Bullet for Maximum Stopping Power"
+  duration: "2021.03 ~ 2021.06"
+  description: "Optimal Design of a Counter-Terrorism Small-Arms Projectile Mock-up and Material Optimization for Maximum Stopping Power"
+  # details:  # bullet point로 표시될 상세 내용 (비워두면 표시 안됨)
+  #   - "Microfost MRTK Tutorial기반 Unity 프로젝트 생성"
+  #   - "UI 버튼 클릭 시 3D 파일 및 영상 시각화 하도록 스크립트 작성"
+  video_url: "https://drive.google.com/file/d/1W-M-nYhyTzigU-C830ISD5iwECYb1axZ/view?usp=sharing"
   overview_pdf: ""  # PDF 링크 없으면 비워두기
   github_url: ""
