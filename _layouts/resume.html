@@ -115,7 +115,7 @@
     }
 
     .executive-summary { 
-      margin-bottom: 24px; 
+      margin-bottom: 0; 
       font-size: 2.34rem !important;
       line-height: 1.4;
       font-weight: 600;
@@ -124,6 +124,9 @@
       margin-left: auto;
       margin-right: auto;
       max-width: 100%;
+    }
+    .executive-summary p {
+      margin: 0;
     }
     @media (max-width: 768px) {
       .executive-summary {
@@ -137,9 +140,6 @@
         font-size: 1.8rem !important;
       }
     }
-    .executive-summary p {
-      margin: 0;
-    }
     .intro-description { 
       margin-bottom: 24px;
       font-size: 1rem;
@@ -148,6 +148,40 @@
     }
     .intro-description p {
       margin: 0;
+    }
+
+    /* Header sub-description (small text under main title) */
+    .header-sub {
+      text-align: left;
+      font-size: 1rem;
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 45px;
+      line-height: 1.7;
+    }
+
+    /* Intro sections with headings */
+    .intro-section {
+      margin-bottom: 35px;
+    }
+    .intro-section:last-child {
+      margin-bottom: 0;
+    }
+    .intro-heading {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0 0 8px 0;
+      padding-left: 12px;
+      border-left: 3px solid #3498db;
+      line-height: 1.5;
+    }
+    .intro-content {
+      font-size: 0.95rem;
+      color: #444;
+      margin: 0;
+      padding-left: 15px;
+      line-height: 1.7;
     }
 
     /* Home icon links under name/email */
@@ -184,6 +218,11 @@
         <div class="executive-summary" itemprop="description">
           {{ site.resume_header_intro }}
         </div>
+        {% if site.resume_header_sub %}
+        <div class="header-sub">
+          {{ site.resume_header_sub }}
+        </div>
+        {% endif %}
         <div class="intro-description">
           {{ site.resume_intro_description }}
         </div>
